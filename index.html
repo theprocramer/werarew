@@ -171,14 +171,14 @@
 <div class="logo">werartox</div>
 
 <div class="search-container">
-    <input type="text" class="search-box" id="search" placeholder="Video ara..." oninput="showSuggestions()" />
-    <button class="search-button" onclick="searchFunction()">🔍</button>
+    <input type="text" class="search-box" id="search" placeholder="Search video..." oninput="showSuggestions()" />
+    <button class="search-button" onclick="searchFunction()">&#128269;</button>
     <!-- Autocomplete listesi -->
     <ul id="suggestions-list" class="autocomplete-list"></ul>
 </div>
 
 <div class="error-message" id="error-message">
-    Bu video bulunamadı! Lütfen başka bir şey deneyin.
+    Eror! Bu video bulunamadı. Lütfen başka bir şey deneyin.
 </div>
 
 <script>
@@ -193,8 +193,11 @@
     function searchFunction() {
         var query = document.getElementById("search").value.toLowerCase().trim();
         const errorMessage = document.getElementById("error-message");
-        if (searchMap[query]) {
-            window.location.href = searchMap[query];
+
+        const foundKey = Object.keys(searchMap).find(key => key.toLowerCase() === query);
+        
+        if (foundKey) {
+            window.location.href = searchMap[foundKey];
             errorMessage.style.display = "none"; // Eğer video bulunursa hata mesajı gizlenir
         } else {
             errorMessage.style.display = "block"; // Hata mesajını göster
@@ -219,6 +222,7 @@
                     li.onclick = function() {
                         document.getElementById("search").value = suggestion;
                         suggestionsList.style.display = "none";
+                        searchFunction(); // Seçim yapınca direkt arama yapabilir
                     };
                     suggestionsList.appendChild(li);
                 });
