@@ -7,54 +7,54 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background: #1a1a1a;
             margin: 0;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background-color 0.5s ease;
-            position: relative;
             color: #fff;
+            transition: background-color 0.5s ease;
         }
 
         .logo {
             position: absolute;
             top: 20px;
-            left: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 36px;
             font-weight: bold;
             color: #fff;
             text-transform: uppercase;
             letter-spacing: 2px;
-            background: -webkit-linear-gradient(45deg, #00b09b, #96c93d);
+            background: -webkit-linear-gradient(45deg, #ff6347, #8b0000);
             -webkit-background-clip: text;
             animation: glow 1.5s ease-in-out infinite;
         }
 
         @keyframes glow {
             0% {
-                text-shadow: 0 0 5px #00b09b, 0 0 10px #00b09b, 0 0 15px #96c93d;
+                text-shadow: 0 0 5px #ff6347, 0 0 10px #ff6347, 0 0 15px #8b0000;
             }
             50% {
-                text-shadow: 0 0 20px #00b09b, 0 0 30px #00b09b, 0 0 40px #96c93d;
+                text-shadow: 0 0 20px #ff6347, 0 0 30px #ff6347, 0 0 40px #8b0000;
             }
             100% {
-                text-shadow: 0 0 5px #00b09b, 0 0 10px #00b09b, 0 0 15px #96c93d;
+                text-shadow: 0 0 5px #ff6347, 0 0 10px #ff6347, 0 0 15px #8b0000;
             }
         }
 
         .search-container {
             position: relative;
             width: 100%;
-            max-width: 700px;
+            max-width: 600px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             padding: 20px 30px;
             display: flex;
             align-items: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
             transition: transform 0.3s ease;
         }
 
@@ -65,9 +65,9 @@
             border: none;
             border-radius: 50px;
             outline: none;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.3);
+            color: #ddd;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
 
@@ -103,17 +103,17 @@
         }
 
         .search-box::placeholder {
-            color: #aaa;
+            color: #bbb;
             font-style: italic;
         }
 
         .search-container:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
         }
 
         .error-message {
-            color: #ff5e62;
+            color: #e74c3c;
             font-size: 14px;
             margin-top: 10px;
             text-align: center;
@@ -126,8 +126,8 @@
             top: 60px;
             left: 0;
             width: 100%;
-            background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background-color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             max-height: 200px;
             overflow-y: auto;
             border-radius: 8px;
@@ -149,7 +149,7 @@
         /* Responsive tasarım */
         @media (max-width: 768px) {
             .search-container {
-                max-width: 100%;
+                max-width: 90%;
                 padding: 15px;
             }
 
@@ -167,18 +167,18 @@
 </head>
 <body>
 
-<!-- Sol Üst Köşedeki Logo -->
+<!-- Logo -->
 <div class="logo">werartox</div>
 
 <div class="search-container">
-    <input type="text" class="search-box" id="search" placeholder="search web site" oninput="showSuggestions()" />
+    <input type="text" class="search-box" id="search" placeholder="Search website" oninput="showSuggestions()" />
     <button class="search-button" onclick="searchFunction()">&#128269;</button>
-    <!-- Autocomplete listesi -->
+    <!-- Autocomplete list -->
     <ul id="suggestions-list" class="autocomplete-list"></ul>
 </div>
 
 <div class="error-message" id="error-message">
-no web site
+    No website found
 </div>
 
 <script>
@@ -199,9 +199,9 @@ no web site
         
         if (foundKey) {
             window.location.href = searchMap[foundKey];
-            errorMessage.style.display = "none"; // Eğer video bulunursa hata mesajı gizlenir
+            errorMessage.style.display = "none"; // Hide error message if website is found
         } else {
-            errorMessage.style.display = "block"; // Hata mesajını göster
+            errorMessage.style.display = "block"; // Show error message if no match found
         }
     }
 
@@ -223,7 +223,7 @@ no web site
                     li.onclick = function() {
                         document.getElementById("search").value = suggestion;
                         suggestionsList.style.display = "none";
-                        searchFunction(); // Seçim yapınca direkt arama yapabilir
+                        searchFunction(); // Direct search on selection
                     };
                     suggestionsList.appendChild(li);
                 });
