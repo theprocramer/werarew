@@ -11,6 +11,7 @@
       color: white;
       margin: 0;
       padding: 0;
+      transition: background-color 0.3s, color 0.3s;
     }
     .header {
       display: flex;
@@ -63,6 +64,20 @@
       margin: 5px 0;
       font-size: 14px;
     }
+    .color-picker-container {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .color-picker-container label {
+      margin-right: 10px;
+      color: white;
+    }
+    .color-picker-container input {
+      width: 50px;
+      height: 30px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -71,28 +86,34 @@
     <div class="search-container">
       <input type="text" id="searchInput" class="search-input" placeholder="Search..." onkeyup="searchFunction()">
     </div>
-    <div class="settings-icon">⚙️</div>
+    <div class="settings-icon">
+      <button class="toggle-btn" onclick="toggleMode()">🌙</button>
+    </div>
   </div>
+
+  <div class="color-picker-container">
+    <label for="bgColorPicker">Background Color:</label>
+    <input type="color" id="bgColorPicker" onchange="changeBackgroundColor()">
+    <label for="textColorPicker">Text Color:</label>
+    <input type="color" id="textColorPicker" onchange="changeTextColor()">
+  </div>
+
   <div class="list" id="websiteList">
     <div class="list-item">
       <a href="https://theprocramer.github.io/werarew-AI" target="_blank">AI-WERAREW AI</a>
-      <p>https://theprocramer.github.io/werarew-AI</p>
-      <p></p>
+      <p>AI</p>
     </div>
     <div class="list-item">
       <a href="https://theprocramer.github.io/mytextdio" target="_blank">Social Media - MyTextDio</a>
       <p>https://theprocramer.github.io/mytextdio</p>
-      <p></p>
     </div>
     <div class="list-item">
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSePOaAtydT6o0xYTVBVm7mKtBFmcoWOrAeYCFw8RJsSEtIWUw/viewform?usp=dialog" target="_blank">Add Web Site - Werarew</a>
-      <p>Google Forms</p>
-      <p></p>
+      <p>export site</p>
     </div>
     <div class="list-item">
       <a href="https://theprocramer.github.io/videow-game-engine" target="_blank">Web Game Engine - Videow Game Engine</a>
-      <p>https://theprocramer.github.io/videow-game-engine</p>
-      <p></p>
+      <p>create game</p>
     </div>
   </div>
 
@@ -112,6 +133,26 @@
           items[i].style.display = "none";
         }
       }
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle('light-mode');
+      const button = document.querySelector('.toggle-btn');
+      if (document.body.classList.contains('light-mode')) {
+        button.textContent = '🌚';  // Moon icon for dark mode
+      } else {
+        button.textContent = '🌙';  // Sun icon for light mode
+      }
+    }
+
+    function changeBackgroundColor() {
+      const bgColor = document.getElementById("bgColorPicker").value;
+      document.body.style.backgroundColor = bgColor;
+    }
+
+    function changeTextColor() {
+      const textColor = document.getElementById("textColorPicker").value;
+      document.body.style.color = textColor;
     }
   </script>
 </body>
