@@ -78,6 +78,14 @@
       height: 30px;
       cursor: pointer;
     }
+    /* Özelleştirme paneli başlangıçta gizli olacak */
+    .settings-panel {
+      display: none;
+      background-color: #333;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -88,14 +96,18 @@
     </div>
     <div class="settings-icon">
       <button class="toggle-btn" onclick="toggleMode()">🌙</button>
+      <button class="settings-btn" onclick="toggleSettingsPanel()">⚙️</button>
     </div>
   </div>
 
-  <div class="color-picker-container">
-    <label for="bgColorPicker">Background Color:</label>
-    <input type="color" id="bgColorPicker" onchange="changeBackgroundColor()">
-    <label for="textColorPicker">Text Color:</label>
-    <input type="color" id="textColorPicker" onchange="changeTextColor()">
+  <!-- Özelleştirme paneli -->
+  <div class="settings-panel" id="settingsPanel">
+    <div class="color-picker-container">
+      <label for="bgColorPicker">Background Color:</label>
+      <input type="color" id="bgColorPicker" onchange="changeBackgroundColor()">
+      <label for="textColorPicker">Text Color:</label>
+      <input type="color" id="textColorPicker" onchange="changeTextColor()">
+    </div>
   </div>
 
   <div class="list" id="websiteList">
@@ -143,6 +155,11 @@
       } else {
         button.textContent = '🌙';  // Sun icon for light mode
       }
+    }
+
+    function toggleSettingsPanel() {
+      const settingsPanel = document.getElementById("settingsPanel");
+      settingsPanel.style.display = settingsPanel.style.display === "block" ? "none" : "block";
     }
 
     function changeBackgroundColor() {
