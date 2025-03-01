@@ -3,167 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>werarew</title> 
+  <title>werarew</title>
   <style>
     body {
-      background-color: #000;
-      font-family: 'Arial', sans-serif;
-      color: white;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.3s ease;
     }
-    .header {
+
+    .dark-theme {
+      background-color: #1c1c1c;
+      color: white;
+    }
+
+    .light-theme {
+      background-color: white;
+      color: black;
+    }
+
+    header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 10px 20px;
-      border-bottom: 1px solid white;
+      align-items: center;
+      padding: 20px;
+      background-color: #333;
     }
+
     .logo {
-      font-size: 24px;
-      font-weight: bold;
+      width: 40px;
+      height: 40px;
+      background-image: url('logo.jpg');
+      background-size: cover;
+      background-position: center;
     }
-    .search-container {
-      display: flex;
-      align-items: center;
-      flex-grow: 1;
-      margin-left: 20px;
-    }
-    .search-input {
-      width: 100%;
-      max-width: 350px;
+
+    #searchBar {
       padding: 10px;
-      border: 1px solid white;
-      border-radius: 20px;
-      background-color: #333;
-      color: white;
       font-size: 16px;
-      margin-right: 10px;
-    }
-    .settings-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    .list {
-      margin: 20px;
-    }
-    .list-item {
-      padding: 15px;
-      border: 1px solid white;
-      margin-bottom: 10px;
       border-radius: 5px;
+      width: 300px;
     }
-    .list-item a {
-      color: #1E90FF;
-      font-size: 18px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .list-item p {
-      margin: 5px 0;
-      font-size: 14px;
-    }
-    .color-picker-container {
+
+    .buttons {
       display: flex;
+      gap: 10px;
       align-items: center;
-      margin-top: 10px;
     }
-    .color-picker-container label {
-      margin-right: 10px;
-      color: white;
-    }
-    .color-picker-container input {
-      width: 50px;
-      height: 30px;
-      cursor: pointer;
-    }
-    /* Özelleştirme paneli başlangıçta gizli olacak */
-    .settings-panel {
-      display: none;
-      background-color: #333;
+
+    .buttons button {
       padding: 10px;
+      background-color: #333;
+      color: white;
+      border: none;
       border-radius: 5px;
-      margin-top: 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .buttons button:hover {
+      background-color: #555;
+    }
+
+    #searchResultsList {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #searchResultsList .list-item {
+      background-color: #444;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+
+    #searchResultsList .list-item a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    #searchResultsList .list-item p {
+      color: #bbb;
+      font-size: 14px;
     }
   </style>
 </head>
-<body>
-  <div class="header">
-    <div class="logo">WERAREW</div>
-    <div class="search-container">
-      <input type="text" id="searchInput" class="search-input" placeholder="Search..." onkeyup="searchFunction()">
+<body class="dark-theme">
+  <header>
+    <!-- Logo -->
+    <div class="logo"></div>
+
+    <!-- Arama Çubuğu -->
+    <input type="text" id="searchBar" placeholder="Arama yapın..." onkeyup="searchResults()">
+
+    <!-- Butonlar -->
+    <div class="buttons">
+      <!-- Tema Değiştirme Butonu -->
+      <button onclick="toggleTheme()">Tema Değiştir</button>
+
+      <!-- Menü Butonu -->
+      <button onclick="window.location.href='menu.html'">Menü</button>
     </div>
-    <div class="settings-icon">
-      <button class="toggle-btn" onclick="toggleMode()">🌙</button>
-      <button class="settings-btn" onclick="toggleSettingsPanel()">⚙️</button>
-    </div>
-  </div>
+  </header>
 
-  <!-- Özelleştirme paneli -->
-  <div class="settings-panel" id="settingsPanel">
-    <div class="color-picker-container">
-      <label for="bgColorPicker">Background Color:</label>
-      <input type="color" id="bgColorPicker" onchange="changeBackgroundColor()">
-      <label for="textColorPicker">Text Color:</label>
-      <input type="color" id="textColorPicker" onchange="changeTextColor()">
-    </div>
-  </div>
+  <main>
+    <ul id="searchResultsList"></ul>
+    <p id="errorMessage" style="color: red; display: none;">Arama sırasında bir hata oluştu. Lütfen tekrar deneyin.</p>
+  </main>
 
-  <div class="list" id="websiteList">
-   <script>
-      window.onload = function() {
-        fetch('https://raw.githubusercontent.com/theprocramer/werarew-api/main/index.html')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('content').innerHTML = data;
-          })
-          .catch(error => console.error('Error loading the file:', error));
-      };
-    </script>
-
-
-    function searchFunction() {
-      let input = document.getElementById("searchInput");
-      let filter = input.value.toUpperCase();
-      let list = document.getElementById("websiteList");
-      let items = list.getElementsByClassName("list-item");
-
-      for (let i = 0; i < items.length; i++) {
-        let a = items[i].getElementsByTagName("a")[0];
-        let text = a.textContent || a.innerText;
-        if (text.toUpperCase().indexOf(filter) > -1) {
-          items[i].style.display = "";
-        } else {
-          items[i].style.display = "none";
-        }
-      }
-    }
-
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
-      const button = document.querySelector('.toggle-btn');
-      if (document.body.classList.contains('light-mode')) {
-        button.textContent = '🌚';  // Moon icon for dark mode
-      } else {
-        button.textContent = '🌙';  // Sun icon for light mode
-      }
-    }
-
-    function toggleSettingsPanel() {
-      const settingsPanel = document.getElementById("settingsPanel");
-      settingsPanel.style.display = settingsPanel.style.display === "block" ? "none" : "block";
-    }
-
-    function changeBackgroundColor() {
-      const bgColor = document.getElementById("bgColorPicker").value;
-      document.body.style.backgroundColor = bgColor;
-    }
-
-    function changeTextColor() {
-      const textColor = document.getElementById("textColorPicker").value;
-      document.body.style.color = textColor;
-    }
-  </script>
+  <script=""></script>
 </body>
 </html>
