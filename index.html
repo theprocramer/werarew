@@ -111,19 +111,9 @@
   </div>
 
   <div class="list" id="websiteList">
-        fetch('https://theprocramer.github.io/werarew-api/')
-            .then(response => response.json())  // JSON formatında yanıt alacağımızı varsayıyoruz
-            .then(data => {
-                // Veriyi ekranda görüntüle
-                document.getElementById('output').innerHTML = JSON.stringify(data, null, 2);
-            })
-            .catch(error => {
-                console.error('API isteği başarısız oldu:', error);
-            });
-    </script>
-  </div>
+    <html="https://raw.githubusercontent.com/theprocramer/werarew-api/main/index.html></html>
 
-  <script>
+
     function searchFunction() {
       let input = document.getElementById("searchInput");
       let filter = input.value.toUpperCase();
