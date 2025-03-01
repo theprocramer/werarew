@@ -111,7 +111,16 @@
   </div>
 
   <div class="list" id="websiteList">
-    <html="https://raw.githubusercontent.com/theprocramer/werarew-api/main/index.html></html>
+   <script>
+      window.onload = function() {
+        fetch('https://raw.githubusercontent.com/theprocramer/werarew-api/main/index.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('content').innerHTML = data;
+          })
+          .catch(error => console.error('Error loading the file:', error));
+      };
+    </script>
 
 
     function searchFunction() {
