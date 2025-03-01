@@ -111,7 +111,16 @@
   </div>
 
   <div class="list" id="websiteList">
-  <iframe src="https://theprocramer.github.io/werarew-api/" width="100%" height="90%" style="border:none;"></iframe>
+        fetch('https://theprocramer.github.io/werarew-api/')
+            .then(response => response.json())  // JSON formatında yanıt alacağımızı varsayıyoruz
+            .then(data => {
+                // Veriyi ekranda görüntüle
+                document.getElementById('output').innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('API isteği başarısız oldu:', error);
+            });
+    </script>
   </div>
 
   <script>
