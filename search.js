@@ -26,6 +26,13 @@ const staticData = [
     { name: "Coursera", link: "https://www.coursera.org", description: "Üniversite destekli online eğitim.", keywords: ["eğitim", "ders", "sertifika", "öğrenme"] }
 ];
 
+// Debounce fonksiyonu
+let timeout;
+function debounceSearch() {
+    clearTimeout(timeout);
+    timeout = setTimeout(displayResults, 300);  // 300ms bekleyip arama yapacak
+}
+
 // Arama sonuçlarını gösteren fonksiyon
 function displayResults() {
     const query = document.getElementById('searchBar').value.toLowerCase();
@@ -36,7 +43,7 @@ function displayResults() {
     const filteredData = staticData.filter(item => 
         item.name.toLowerCase().includes(query) || 
         item.description.toLowerCase().includes(query) ||
-        item.keywords.some(keyword => keyword.includes(query))
+        item.keywords.some(keyword => keyword.toLowerCase().includes(query))
     );
 
     if (filteredData.length > 0) {
@@ -55,9 +62,4 @@ function displayResults() {
         li.textContent = 'Arama sonuçları bulunamadı.';
         resultsList.appendChild(li);
     }
-}
-
-// Arama sonuçlarını tetikleyen fonksiyon
-function searchResults() {
-    displayResults();
 }
