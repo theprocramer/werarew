@@ -19,7 +19,6 @@ const staticData = [
     { name: "Epic Games", link: "https://www.epicgames.com", description: "Ücretsiz oyunlar sunan platform.", keywords: ["oyun", "ücretsiz", "fortnite", "store"] },
     { name: "Udemy", link: "https://www.udemy.com", description: "Online eğitim platformu.", keywords: ["kurs", "öğrenme", "eğitim", "sertifika"] },
     { name: "Coursera", link: "https://www.coursera.org", description: "Üniversite destekli online eğitim.", keywords: ["eğitim", "ders", "sertifika", "öğrenme"] },
-    // Eklediğiniz daha fazla site buraya gelecek...
 ];
 
 
@@ -36,10 +35,6 @@ function displayResults() {
         item.keywords.some(keyword => keyword.toLowerCase().includes(query))
     );
 
-    // Çin kaynaklı siteleri filtreleme
-    const filteredWithoutChina = filteredData.filter(item => 
-        !blacklist.some(blacklisted => item.link.includes(blacklisted))
-    );
 
     if (filteredWithoutChina.length > 0) {
         filteredWithoutChina.forEach(result => {
@@ -61,4 +56,5 @@ function displayResults() {
 
 // Arama sonuçlarını tetikleyen fonksiyon
 function searchResults() {
-    displayResu
+    displayResults();
+}
