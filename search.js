@@ -1,7 +1,8 @@
-const websites = [
-    { name: "Trello", link: "https://www.trello.com", description: "Proje yönetimi ve işbirliği platformu.", keywords: ["proje yönetimi", "işbirliği", "görev", "takım"] },
-    { name: "Asana", link: "https://www.asana.com", description: "Proje yönetimi ve görev takibi platformu.", keywords: ["proje yönetimi", "işbirliği", "görev", "takım"] },
-    { name: "Slack", link: "https://www.slack.com", description: "Takım iletişimi ve işbirliği platformu.", keywords: ["takım", "iletişim", "işbirliği"] },
+   const websites = [
+      { name: "Trello", link: "https://www.trello.com", description: "Proje yönetimi ve işbirliği platformu.", keywords: ["proje yönetimi", "işbirliği", "görev", "takım"] },
+      { name: "Asana", link: "https://www.asana.com", description: "Proje yönetimi ve görev takibi platformu.", keywords: ["proje yönetimi", "işbirliği", "görev", "takım"] },
+      { name: "Slack", link: "https://www.slack.com", description: "Takım iletişimi ve işbirliği platformu.", keywords: ["takım", "iletişim", "işbirliği"] },
+        { name: "Slack", link: "https://www.slack.com", description: "Takım iletişimi ve işbirliği platformu.", keywords: ["takım", "iletişim", "işbirliği"] },
     { name: "Monday.com", link: "https://www.monday.com", description: "Proje yönetimi ve işbirliği platformu.", keywords: ["proje yönetimi", "işbirliği", "görev", "takım"] },
     { name: "Basecamp", link: "https://www.basecamp.com", description: "Proje yönetimi ve takım iletişimi platformu.", keywords: ["proje yönetimi", "işbirliği", "görev", "takım"] },
     { name: "Notion", link: "https://www.notion.so", description: "Dijital not alma ve organizasyon platformu.", keywords: ["not", "organizasyon", "iş", "görev"] },
@@ -56,4 +57,39 @@ const websites = [
     { name: "Blender", link: "https://www.blender.org", description: "3D modelleme ve animasyon yazılımı.", keywords: ["3D", "modelleme", "animasyon"] },
     { name: "Autodesk", link: "https://www.autodesk.com", description: "Tasarım ve mühendislik yazılımı platformu.", keywords: ["tasarım", "mühendislik", "yazılım"] },
     { name: "Sketch", link: "https://www.sketch.com", description: "Web ve mobil tasarım yazılımı.", keywords: ["tasarım", "mobil", "web"] }
-];
+    ];
+
+    function searchResults() {
+      const query = document.getElementById("searchBar").value.toLowerCase();
+      const results = websites.filter(website =>
+        website.name.toLowerCase().includes(query) ||
+        website.description.toLowerCase().includes(query) ||
+        website.keywords.some(keyword => keyword.toLowerCase().includes(query))
+      );
+
+      const resultList = document.getElementById("searchResultsList");
+      resultList.innerHTML = ""; // Temizleme
+
+      if (results.length === 0) {
+        document.getElementById("errorMessage").style.display = "block";
+      } else {
+        document.getElementById("errorMessage").style.display = "none";
+        results.forEach(result => {
+          const listItem = document.createElement("li");
+          listItem.classList.add("list-item");
+
+          listItem.innerHTML = `
+            <a href="${result.link}" target="_blank">${result.name}</a>
+            <p>${result.description}</p>
+          `;
+
+          resultList.appendChild(listItem);
+        });
+      }
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle("dark-theme");
+      body.classList.toggle("light-theme");
+    }
