@@ -1,19 +1,14 @@
-// Statik veri listesi (Daha fazla site eklendi!)
+// Statik veri listesi
 const staticData = [
     { name: "Google", link: "https://www.google.com", description: "Dünyanın en popüler arama motoru.", keywords: ["arama", "internet", "bilgi", "search"] },
     { name: "YouTube", link: "https://www.youtube.com", description: "Video paylaşım platformu.", keywords: ["video", "müzik", "film", "eğitim"] },
     { name: "Wikipedia", link: "https://www.wikipedia.org", description: "Özgür ansiklopedi.", keywords: ["bilgi", "tarih", "ansiklopedi", "öğrenme"] },
     { name: "Twitter", link: "https://www.twitter.com", description: "Mikroblog platformu.", keywords: ["haber", "sosyal medya", "tweet", "gündem"] },
-    { name: "Facebook", link: "https://www.facebook.com", description: "Dünyanın en büyük sosyal ağı.", keywords: ["sosyal", "arkadaş", "topluluk", "iletişim"] },
-    { name: "Instagram", link: "https://www.instagram.com", description: "Fotoğraf ve video paylaşım platformu.", keywords: ["fotoğraf", "selfie", "görsel", "hikaye"] },
-    { name: "Reddit", link: "https://www.reddit.com", description: "Topluluk tabanlı platform.", keywords: ["forum", "topluluk", "tartışma", "bilgi"] },
     { name: "GitHub", link: "https://www.github.com", description: "Kod paylaşım platformu.", keywords: ["kod", "yazılım", "programlama", "repo"] },
     { name: "Stack Overflow", link: "https://stackoverflow.com", description: "Yazılım geliştirme için soru-cevap platformu.", keywords: ["kod", "sorular", "hata", "programlama"] },
     { name: "LinkedIn", link: "https://www.linkedin.com", description: "İş ağı platformu.", keywords: ["iş", "kariyer", "cv", "bağlantı"] },
     { name: "Netflix", link: "https://www.netflix.com", description: "Dizi ve film izleme platformu.", keywords: ["film", "dizi", "eğlence", "stream"] },
     { name: "Amazon", link: "https://www.amazon.com", description: "E-ticaret devi, alışveriş yapın.", keywords: ["alışveriş", "e-ticaret", "market", "ürün"] },
-    { name: "eBay", link: "https://www.ebay.com", description: "Açık artırma ve ikinci el ürün platformu.", keywords: ["alışveriş", "ikinci el", "pazar", "ürün"] },
-    { name: "AliExpress", link: "https://www.aliexpress.com", description: "Çin merkezli online alışveriş sitesi.", keywords: ["alışveriş", "ucuz", "kargo", "indirim"] },
     { name: "Discord", link: "https://www.discord.com", description: "Sesli ve yazılı sohbet platformu.", keywords: ["sohbet", "topluluk", "gamer", "arkadaş"] },
     { name: "Telegram", link: "https://www.telegram.org", description: "Güvenli mesajlaşma uygulaması.", keywords: ["mesaj", "gizlilik", "şifreleme", "grup"] },
     { name: "WhatsApp", link: "https://www.whatsapp.com", description: "Popüler mesajlaşma uygulaması.", keywords: ["mesaj", "çağrı", "iletişim", "grup"] },
@@ -23,15 +18,10 @@ const staticData = [
     { name: "Steam", link: "https://store.steampowered.com", description: "Dijital oyun platformu.", keywords: ["oyun", "indirim", "store", "pc"] },
     { name: "Epic Games", link: "https://www.epicgames.com", description: "Ücretsiz oyunlar sunan platform.", keywords: ["oyun", "ücretsiz", "fortnite", "store"] },
     { name: "Udemy", link: "https://www.udemy.com", description: "Online eğitim platformu.", keywords: ["kurs", "öğrenme", "eğitim", "sertifika"] },
-    { name: "Coursera", link: "https://www.coursera.org", description: "Üniversite destekli online eğitim.", keywords: ["eğitim", "ders", "sertifika", "öğrenme"] }
+    { name: "Coursera", link: "https://www.coursera.org", description: "Üniversite destekli online eğitim.", keywords: ["eğitim", "ders", "sertifika", "öğrenme"] },
+    // Eklediğiniz daha fazla site buraya gelecek...
 ];
 
-// Debounce fonksiyonu
-let timeout;
-function debounceSearch() {
-    clearTimeout(timeout);
-    timeout = setTimeout(displayResults, 300);  // 300ms bekleyip arama yapacak
-}
 
 // Arama sonuçlarını gösteren fonksiyon
 function displayResults() {
@@ -46,8 +36,13 @@ function displayResults() {
         item.keywords.some(keyword => keyword.toLowerCase().includes(query))
     );
 
-    if (filteredData.length > 0) {
-        filteredData.forEach(result => {
+    // Çin kaynaklı siteleri filtreleme
+    const filteredWithoutChina = filteredData.filter(item => 
+        !blacklist.some(blacklisted => item.link.includes(blacklisted))
+    );
+
+    if (filteredWithoutChina.length > 0) {
+        filteredWithoutChina.forEach(result => {
             const li = document.createElement('li');
             li.classList.add('list-item');
             li.innerHTML = `
@@ -63,3 +58,7 @@ function displayResults() {
         resultsList.appendChild(li);
     }
 }
+
+// Arama sonuçlarını tetikleyen fonksiyon
+function searchResults() {
+    displayResu
