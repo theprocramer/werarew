@@ -139,7 +139,7 @@
   </div>
   <script>     
        const sites = [
-      { title: "Vercel", description: "Hızlı ve verimli frontend platformu.", url: "https://vercel.com" },
+    { title: "Vercel", description: "Hızlı ve verimli frontend platformu.", url: "https://vercel.com" },
       { title: "Dribbble", description: "Tasarımcılar için bir portföy ve keşif platformu.", url: "https://dribbble.com" },
       { title: "Awwwards", description: "En iyi web tasarımlarını ödüllendiren platform.", url: "https://awwwards.com" },
       { title: "CSS-Tricks", description: "Web geliştirme ve tasarım ipuçları.", url: "https://css-tricks.com" },
