@@ -1,95 +1,117 @@
-   const websites = [
-      { name: "Trello", link: "https://www.trello.com", description: "Proje yönetimi ve işbirliği platformu.", keywords: ["proje yönetimi", "işbirliği", "görev", "takım"] },
-      { name: "Asana", link: "https://www.asana.com", description: "Proje yönetimi ve görev takibi platformu.", keywords: ["proje yönetimi", "işbirliği", "görev", "takım"] },
-      { name: "Slack", link: "https://www.slack.com", description: "Takım iletişimi ve işbirliği platformu.", keywords: ["takım", "iletişim", "işbirliği"] },
-        { name: "Slack", link: "https://www.slack.com", description: "Takım iletişimi ve işbirliği platformu.", keywords: ["takım", "iletişim", "işbirliği"] },
-    { name: "Monday.com", link: "https://www.monday.com", description: "Proje yönetimi ve işbirliği platformu.", keywords: ["proje yönetimi", "işbirliği", "görev", "takım"] },
-    { name: "Basecamp", link: "https://www.basecamp.com", description: "Proje yönetimi ve takım iletişimi platformu.", keywords: ["proje yönetimi", "işbirliği", "görev", "takım"] },
-    { name: "Notion", link: "https://www.notion.so", description: "Dijital not alma ve organizasyon platformu.", keywords: ["not", "organizasyon", "iş", "görev"] },
-    { name: "Evernote", link: "https://www.evernote.com", description: "Not alma ve organizasyon platformu.", keywords: ["not", "organize", "iş", "görev"] },
-    { name: "Google Drive", link: "https://www.drive.google.com", description: "Bulut tabanlı dosya depolama ve paylaşma platformu.", keywords: ["bulut", "dosya", "depolama", "paylaşım"] },
-    { name: "Dropbox", link: "https://www.dropbox.com", description: "Bulut tabanlı dosya depolama ve paylaşma platformu.", keywords: ["bulut", "dosya", "depolama", "paylaşım"] },
-    { name: "Box", link: "https://www.box.com", description: "Kurumsal bulut depolama platformu.", keywords: ["bulut", "depolama", "iş", "paylaşım"] },
-    { name: "OneDrive", link: "https://www.onedrive.com", description: "Microsoft'un bulut depolama platformu.", keywords: ["bulut", "depolama", "dosya", "paylaşım"] },
-    { name: "Google Photos", link: "https://www.photos.google.com", description: "Fotoğraf depolama ve paylaşma platformu.", keywords: ["fotoğraf", "depolama", "paylaşım", "bulut"] },
-    { name: "Flickr", link: "https://www.flickr.com", description: "Fotoğraf paylaşımı ve depolama platformu.", keywords: ["fotoğraf", "paylaşım", "depolama", "sanat"] },
-    { name: "500px", link: "https://www.500px.com", description: "Profesyonel fotoğraf paylaşım platformu.", keywords: ["fotoğraf", "paylaşım", "sanat", "portföy"] },
-    { name: "Instagram", link: "https://www.instagram.com", description: "Fotoğraf ve video paylaşım platformu.", keywords: ["fotoğraf", "video", "paylaşım", "sosyal medya"] },
-    { name: "Pinterest", link: "https://www.pinterest.com", description: "İlham almak için görsel paylaşım platformu.", keywords: ["görsel", "ilham", "paylaşım", "sanat"] },
-    { name: "Snapchat", link: "https://www.snapchat.com", description: "Fotoğraf ve video paylaşımı üzerine kurulu sosyal medya platformu.", keywords: ["fotoğraf", "video", "paylaşım", "sosyal medya"] },
-    { name: "TikTok", link: "https://www.tiktok.com", description: "Kısa video içerikleri paylaşma platformu.", keywords: ["video", "paylaşım", "sosyal medya", "müzik"] },
-    { name: "Vimeo", link: "https://www.vimeo.com", description: "Video barındırma ve paylaşma platformu.", keywords: ["video", "paylaşım", "sanat", "film"] },
-    { name: "YouTube", link: "https://www.youtube.com", description: "Video izleme ve paylaşma platformu.", keywords: ["video", "paylaşım", "eğlence"] },
-    { name: "SoundCloud", link: "https://www.soundcloud.com", description: "Müzik dinleme ve paylaşma platformu.", keywords: ["müzik", "paylaşım", "dinleme"] },
-    { name: "Spotify", link: "https://www.spotify.com", description: "Müzik dinleme platformu.", keywords: ["müzik", "dinleme", "paylaşım"] },
-    { name: "Deezer", link: "https://www.deezer.com", description: "Müzik dinleme ve keşfetme platformu.", keywords: ["müzik", "dinleme", "keşfetme"] },
-    { name: "Apple Music", link: "https://www.apple.com/music", description: "Müzik dinleme platformu.", keywords: ["müzik", "dinleme", "keşfetme"] },
-    { name: "Bandcamp", link: "https://www.bandcamp.com", description: "Bağımsız sanatçılar için müzik paylaşım platformu.", keywords: ["müzik", "paylaşım", "bağımsız sanatçılar"] },
-    { name: "Reddit", link: "https://www.reddit.com", description: "Topluluk tabanlı sosyal medya platformu.", keywords: ["forum", "topluluk", "paylaşım", "tartışma"] },
-    { name: "Quora", link: "https://www.quora.com", description: "Soru ve cevap platformu.", keywords: ["soru", "cevap", "tartışma"] },
-    { name: "Medium", link: "https://www.medium.com", description: "Yazı ve blog paylaşım platformu.", keywords: ["yazı", "blog", "paylaşım", "makale"] },
-    { name: "Stack Overflow", link: "https://www.stackoverflow.com", description: "Programlama soruları ve cevapları platformu.", keywords: ["programlama", "soru", "cevap"] },
-    { name: "GitHub", link: "https://www.github.com", description: "Yazılım geliştirme ve sürüm kontrol platformu.", keywords: ["yazılım", "geliştirme", "kod", "repo"] },
-    { name: "GitLab", link: "https://www.gitlab.com", description: "Yazılım geliştirme ve DevOps platformu.", keywords: ["yazılım", "geliştirme", "DevOps"] },
-    { name: "Bitbucket", link: "https://www.bitbucket.org", description: "Yazılım geliştirme ve sürüm kontrol platformu.", keywords: ["yazılım", "geliştirme", "kod", "repo"] },
-    { name: "CodePen", link: "https://www.codepen.io", description: "Web tasarımı ve frontend geliştirme platformu.", keywords: ["web tasarımı", "frontend", "geliştirme"] },
-    { name: "Replit", link: "https://www.replit.com", description: "Çevrimiçi kodlama ve yazılım geliştirme platformu.", keywords: ["yazılım", "geliştirme", "kodlama"] },
-    { name: "Stack Exchange", link: "https://www.stackexchange.com", description: "Soru ve cevap platformları ağı.", keywords: ["soru", "cevap", "topluluk"] },
-    { name: "HackerRank", link: "https://www.hackerrank.com", description: "Programlama alıştırmaları ve mülakat soruları platformu.", keywords: ["programlama", "alıştırma", "mülakat"] },
-    { name: "LeetCode", link: "https://www.leetcode.com", description: "Kodlama ve algoritma çözme platformu.", keywords: ["kodlama", "algoritma", "test"] },
-    { name: "Khan Academy", link: "https://www.khanacademy.org", description: "Eğitim videoları ve ders platformu.", keywords: ["eğitim", "ders", "video", "öğrenme"] },
-    { name: "Coursera", link: "https://www.coursera.org", description: "Çevrimiçi kurslar ve eğitim platformu.", keywords: ["eğitim", "kurs", "öğrenme"] },
-    { name: "Udemy", link: "https://www.udemy.com", description: "Çevrimiçi kurslar ve eğitim platformu.", keywords: ["eğitim", "kurs", "öğrenme"] },
-    { name: "edX", link: "https://www.edx.org", description: "Üniversite düzeyinde çevrimiçi kurslar platformu.", keywords: ["eğitim", "üniversite", "kurs"] },
-    { name: "Skillshare", link: "https://www.skillshare.com", description: "Çevrimiçi eğitim ve kurs platformu.", keywords: ["eğitim", "kurs", "öğrenme"] },
-    { name: "Duolingo", link: "https://www.duolingo.com", description: "Dil öğrenme platformu.", keywords: ["dil", "öğrenme", "kurs"] },
-    { name: "Tandem", link: "https://www.tandem.net", description: "Dil öğrenme ve pratik yapma platformu.", keywords: ["dil", "öğrenme", "pratik"] },
-    { name: "Memrise", link: "https://www.memrise.com", description: "Dil öğrenme platformu.", keywords: ["dil", "öğrenme"] },
-    { name: "Wolfram Alpha", link: "https://www.wolframalpha.com", description: "Bilgi sorgulama ve hesaplama motoru.", keywords: ["hesaplama", "bilgi", "sorgulama"] },
-    { name: "Kaggle", link: "https://www.kaggle.com", description: "Veri bilimi yarışmaları ve veri setleri platformu.", keywords: ["veri", "bilim", "yarışma"] },
-    { name: "Behance", link: "https://www.behance.net", description: "Tasarımcılar için portföy ve ilham platformu.", keywords: ["tasarım", "portföy", "ilham"] },
-    { name: "Dribbble", link: "https://www.dribbble.com", description: "Tasarımcılar için görsel portföy platformu.", keywords: ["tasarım", "portföy", "görsel"] },
-    { name: "Envato", link: "https://www.envato.com", description: "Dijital ürünler ve içerik satış platformu.", keywords: ["dijital", "ürün", "satış"] },
-    { name: "Canva", link: "https://www.canva.com", description: "Grafik tasarım ve düzenleme platformu.", keywords: ["grafik", "tasarım", "düzenleme"] },
-    { name: "Figma", link: "https://www.figma.com", description: "Çevrimiçi tasarım ve prototip oluşturma platformu.", keywords: ["tasarım", "prototip", "çevrimiçi"] },
-    { name: "InVision", link: "https://www.invisionapp.com", description: "Tasarım prototipleme ve işbirliği platformu.", keywords: ["tasarım", "prototip", "işbirliği"] },
-    { name: "GIMP", link: "https://www.gimp.org", description: "Ücretsiz açık kaynaklı grafik tasarım yazılımı.", keywords: ["grafik", "tasarım", "ücretsiz"] },
-    { name: "Blender", link: "https://www.blender.org", description: "3D modelleme ve animasyon yazılımı.", keywords: ["3D", "modelleme", "animasyon"] },
-    { name: "Autodesk", link: "https://www.autodesk.com", description: "Tasarım ve mühendislik yazılımı platformu.", keywords: ["tasarım", "mühendislik", "yazılım"] },
-    { name: "Sketch", link: "https://www.sketch.com", description: "Web ve mobil tasarım yazılımı.", keywords: ["tasarım", "mobil", "web"] }
-    ];
+   const sites = [
+      { title: "Vercel", description: "Hızlı ve verimli frontend platformu.", url: "https://vercel.com" },
+      { title: "Dribbble", description: "Tasarımcılar için bir portföy ve keşif platformu.", url: "https://dribbble.com" },
+      { title: "Awwwards", description: "En iyi web tasarımlarını ödüllendiren platform.", url: "https://awwwards.com" },
+      { title: "CSS-Tricks", description: "Web geliştirme ve tasarım ipuçları.", url: "https://css-tricks.com" },
+      { title: "Adobe Portfolio", description: "Adobe'nin sunduğu portföy oluşturma aracı.", url: "https://portfolio.adobe.com" },
+      { title: "Behance", description: "Sanatçılar ve tasarımcılar için portföy platformu.", url: "https://behance.net" },
+      { title: "CodePen", description: "Kod paylaşımı ve web tasarımı uygulamaları.", url: "https://codepen.io" },
+      { title: "GitHub", description: "Açık kaynak projelerin paylaşıldığı platform.", url: "https://github.com" },
+      { title: "Stack Overflow", description: "Geliştiriciler için soru-cevap platformu.", url: "https://stackoverflow.com" },
+      { title: "MDN Web Docs", description: "Mozilla'nın web geliştirme dökümantasyonları.", url: "https://developer.mozilla.org" },
+      { title: "Smashing Magazine", description: "Web tasarımı ve geliştirmeyle ilgili kaynaklar.", url: "https://smashingmagazine.com" },
+      { title: "UX Design", description: "Kullanıcı deneyimi tasarımı kaynakları ve makaleler.", url: "https://uxdesign.cc" },
+      { title: "Figma", description: "Web tabanlı tasarım ve prototipleme aracı.", url: "https://figma.com" },
+      { title: "Canva", description: "Kullanıcı dostu grafik tasarım aracı.", url: "https://canva.com" },
+      { title: "Webflow", description: "Kod yazmadan web tasarımı yapmanı sağlayan platform.", url: "https://webflow.com" },
+      { title: "Trello", description: "Proje yönetimi ve görev takibi platformu.", url: "https://trello.com" },
+      { title: "Notion", description: "Dijital not alma ve organizasyon platformu.", url: "https://notion.so" },
+      { title: "Google Fonts", description: "Web için ücretsiz yazı tipleri.", url: "https://fonts.google.com" },
+      { title: "Medium", description: "İçerik paylaşımı ve blog platformu.", url: "https://medium.com" },
+      { title: "Envato Market", description: "Web tasarımı ve yazılım kaynakları platformu.", url: "https://envato.com" },
+      { title: "W3Schools", description: "Web geliştirme öğrenmek için kapsamlı kaynak.", url: "https://w3schools.com" },
+      { title: "Moz", description: "SEO ve dijital pazarlama araçları.", url: "https://moz.com" },
+      { title: "Mailchimp", description: "E-posta pazarlama platformu.", url: "https://mailchimp.com" },
+      { title: "Zapier", description: "İş akışlarını otomatikleştiren araç.", url: "https://zapier.com" },
+      { title: "Shopify", description: "E-ticaret mağazası oluşturma platformu.", url: "https://shopify.com" },
+      { title: "DigitalOcean", description: "Bulut sunucuları sağlayan platform.", url: "https://digitalocean.com" },
+      { title: "Heroku", description: "Bulut platformu ve uygulama barındırma hizmeti.", url: "https://heroku.com" },
+      { title: "WordPress", description: "Dünya çapında popüler içerik yönetim sistemi.", url: "https://wordpress.com" },
+      { title: "Quora", description: "Soru-cevap platformu, kullanıcılar sorular sorar ve yanıtlar alır.", url: "https://quora.com" },
+      { title: "LinkedIn", description: "Profesyonel ağ kurma ve iş arama platformu.", url: "https://linkedin.com" },
+      { title: "Instagram", description: "Görsel ve video paylaşımı platformu.", url: "https://instagram.com" },
+      { title: "Pinterest", description: "Fikir paylaşımı ve görsel keşif platformu.", url: "https://pinterest.com" },
+      { title: "Reddit", description: "Haber ve topluluk platformu.", url: "https://reddit.com" },
+      { title: "Twitter", description: "Kısa mesajlaşma ve haberleşme platformu.", url: "https://twitter.com" },
+      { title: "Facebook", description: "Sosyal medya ve haberleşme platformu.", url: "https://facebook.com" },
+      { title: "YouTube", description: "Video paylaşım ve yayın platformu.", url: "https://youtube.com" },
+      { title: "Netflix", description: "Dijital film ve dizi akış platformu.", url: "https://netflix.com" },
+      { title: "Spotify", description: "Müzik dinleme platformu.", url: "https://spotify.com" },
+      { title: "Apple", description: "Teknolojik ürünler ve yazılımlar üreten firma.", url: "https://apple.com" },
+      { title: "Amazon", description: "E-ticaret ve teknoloji şirketi.", url: "https://amazon.com" },
+      { title: "werarew sheet", description: "tablo uyqulamas;", url: "https://theprocramer.github.io/werarew-sheet/" },
+       { title: "werarew game engine", description: "create game oyun geliştirme", url: "https://theprocramer.github.io/werarew-game-engine" },
+      { title: "Vercel", description: "A fast and efficient frontend platform.", url: "https://vercel.com" },
+{ title: "Dribbble", description: "A portfolio and discovery platform for designers.", url: "https://dribbble.com" },
+{ title: "Awwwards", description: "A platform that rewards the best web designs.", url: "https://awwwards.com" },
+{ title: "CSS-Tricks", description: "Web development and design tips.", url: "https://css-tricks.com" },
+{ title: "Adobe Portfolio", description: "Adobe's portfolio creation tool.", url: "https://portfolio.adobe.com" },
+{ title: "Behance", description: "A portfolio platform for artists and designers.", url: "https://behance.net" },
+{ title: "CodePen", description: "Code sharing and web design applications.", url: "https://codepen.io" },
+{ title: "GitHub", description: "A platform for sharing open source projects.", url: "https://github.com" },
+{ title: "Stack Overflow", description: "A question-and-answer platform for developers.", url: "https://stackoverflow.com" },
+{ title: "MDN Web Docs", description: "Mozilla's web development documentation.", url: "https://developer.mozilla.org" },
+{ title: "Smashing Magazine", description: "Resources for web design and development.", url: "https://smashingmagazine.com" },
+{ title: "UX Design", description: "User experience design resources and articles.", url: "https://uxdesign.cc" },
+{ title: "Figma", description: "Web-based design and prototyping tool.", url: "https://figma.com" },
+{ title: "Canva", description: "User-friendly graphic design tool.", url: "https://canva.com" },
+{ title: "Webflow", description: "A platform that lets you design websites without writing code.", url: "https://webflow.com" },
+{ title: "Trello", description: "Project management and task tracking platform.", url: "https://trello.com" },
+{ title: "Notion", description: "Digital note-taking and organization platform.", url: "https://notion.so" },
+{ title: "Google Fonts", description: "Free fonts for the web.", url: "https://fonts.google.com" },
+{ title: "Medium", description: "Content sharing and blogging platform.", url: "https://medium.com" },
+{ title: "Envato Market", description: "Web design and software resource platform.", url: "https://envato.com" },
+{ title: "W3Schools", description: "Comprehensive resource for learning web development.", url: "https://w3schools.com" },
+{ title: "Moz", description: "SEO and digital marketing tools.", url: "https://moz.com" },
+{ title: "Mailchimp", description: "Email marketing platform.", url: "https://mailchimp.com" },
+{ title: "Zapier", description: "Workflow automating tool.", url: "https://zapier.com" },
+{ title: "Shopify", description: "Platform for building e-commerce stores.", url: "https://shopify.com" },
+{ title: "DigitalOcean", description: "Platform that provides cloud servers.", url: "https://digitalocean.com" },
+{ title: "Heroku", description: "Cloud platform and application hosting service.", url: "https://heroku.com" },
+{ title: "WordPress", description: "Worldwide popular content management system.", url: "https://wordpress.com" },
+{ title: "Quora", description: "Question-answer platform, users ask questions and get answers.", url: "https://quora.com" },
+{ title: "LinkedIn", description: "Professional networking and job search platform.", url: "https://linkedin.com" },
+{ title: "Instagram", description: "Image and video sharing platform.", url: "https://instagram.com" },
+{ title: "Pinterest", description: "Idea sharing and visual discovery platform.", url: "https://pinterest.com" },
+{ title: "Reddit", description: "News and community platform.", url: "https://reddit.com" },
+{ title: "Twitter", description: "Short messaging and communication platform.", url: "https://twitter.com" },
+{ title: "Facebook", description: "Social media and communication platform.", url: "https://facebook.com" },
+{ title: "YouTube", description: "Video sharing and broadcasting platform.", url: "https://youtube.com" },
+{ title: "Netflix", description: "Digital movie and series streaming platform.", url: "https://netflix.com" },
+{ title: "Spotify", description: "Music listening platform.", url: "https://spotify.com" },
+{ title: "Apple", description: "A company that produces technological products and software.", url: "https://apple.com" },
+{ title: "Amazon", description: "E-commerce and technology company.", url: "https://amazon.com" },
+{ title: "werarew sheet", description: "table application", url: "https://theprocramer.github.io/werarew-sheet/" },
+     
+      ];
 
-    function searchResults() {
-      const query = document.getElementById("searchBar").value.toLowerCase();
-      const results = websites.filter(website =>
-        website.name.toLowerCase().includes(query) ||
-        website.description.toLowerCase().includes(query) ||
-        website.keywords.some(keyword => keyword.toLowerCase().includes(query))
-      );
+    const searchInput = document.getElementById("search");
+    const results = document.getElementById("results");
 
-      const resultList = document.getElementById("searchResultsList");
-      resultList.innerHTML = ""; // Temizleme
+    function displayResults(query) {
+      results.innerHTML = "";
+      const filteredSites = sites.filter(site => site.title.toLowerCase().includes(query.toLowerCase()) || site.description.toLowerCase().includes(query.toLowerCase()));
 
-      if (results.length === 0) {
-        document.getElementById("errorMessage").style.display = "block";
+      if (filteredSites.length === 0) {
+        results.innerHTML = "<p>Sonuç bulunamadı...</p>";
       } else {
-        document.getElementById("errorMessage").style.display = "none";
-        results.forEach(result => {
-          const listItem = document.createElement("li");
-          listItem.classList.add("list-item");
-
-          listItem.innerHTML = `
-            <a href="${result.link}" target="_blank">${result.name}</a>
-            <p>${result.description}</p>
+        filteredSites.forEach(site => {
+          const siteCard = document.createElement("div");
+          siteCard.classList.add("site-card");
+          siteCard.innerHTML = `
+            <h2>${site.title}</h2>
+            <p>${site.description}</p>
+            <a href="${site.url}" target="_blank">Siteyi ziyaret et</a>
           `;
-
-          resultList.appendChild(listItem);
+          results.appendChild(siteCard);
         });
       }
     }
 
+    searchInput.addEventListener("input", (event) => {
+      displayResults(event.target.value);
+    });
+
     function toggleTheme() {
-      const body = document.body;
-      body.classList.toggle("dark-theme");
-      body.classList.toggle("light-theme");
+      document.body.classList.toggle("dark");
     }
