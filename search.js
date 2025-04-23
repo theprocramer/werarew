@@ -82,36 +82,4 @@
 { title: "Apple", description: "A company that produces technological products and software.", url: "https://apple.com" },
 { title: "Amazon", description: "E-commerce and technology company.", url: "https://amazon.com" },
 { title: "werarew sheet", description: "table application", url: "https://theprocramer.github.io/werarew-sheet/" },
-     
-      ];
 
-    const searchInput = document.getElementById("search");
-    const results = document.getElementById("results");
-
-    function displayResults(query) {
-      results.innerHTML = "";
-      const filteredSites = sites.filter(site => site.title.toLowerCase().includes(query.toLowerCase()) || site.description.toLowerCase().includes(query.toLowerCase()));
-
-      if (filteredSites.length === 0) {
-        results.innerHTML = "<p>Sonuç bulunamadı...</p>";
-      } else {
-        filteredSites.forEach(site => {
-          const siteCard = document.createElement("div");
-          siteCard.classList.add("site-card");
-          siteCard.innerHTML = `
-            <h2>${site.title}</h2>
-            <p>${site.description}</p>
-            <a href="${site.url}" target="_blank">Siteyi ziyaret et</a>
-          `;
-          results.appendChild(siteCard);
-        });
-      }
-    }
-
-    searchInput.addEventListener("input", (event) => {
-      displayResults(event.target.value);
-    });
-
-    function toggleTheme() {
-      document.body.classList.toggle("dark");
-    }
