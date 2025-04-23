@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>werarew</title>
+  <style>
+    :root {
+      --bg-color: #f5f5f5;
+      --text-color: #222;
+      --card-color: #fff;
+      --border-color: #ddd;
+      --link-color: #1a73e8;
+    }
+
+    body.dark {
+      --bg-color: #1e1e1e;
+      --text-color: #eee;
+      --card-color: #2c2c2c;
+      --border-color: #444;
+      --link-color: #4d90fe;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      background: var(--card-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .toggle-btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: var(--link-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    #search {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      background-color: var(--card-color);
+      color: var(--text-color);
+      margin-bottom: 30px;
+      box-sizing: border-box;
+    }
+
+    .site-card {
+      background-color: var(--card-color);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+    }
+
+    .site-card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    }
+
+    .site-card h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .site-card p {
+      margin: 0 0 12px;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    .site-card a {
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header h1 {
+        font-size: 20px;
+      }
+
+      .toggle-btn {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .site-card h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>werarew</h1>
+    <button class="toggle-btn" onclick="toggleTheme()">🌗 Tema Değiştir</button>
+  </header>
+
+  <div class="container">
+    <input type="text" id="search" placeholder="Site ara..." onkeyup="searchSites()">
+    <div id="results"></div>
+  </div>
+
+  <script>
+    const sites = [
+      { title: "Vercel", description: "Hızlı ve verimli frontend platformu.", url: "https://vercel.com" },
+      { title: "Dribbble", description: "Tasarımcılar için bir portföy ve keşif platformu.", url: "https://dribbble.com" },
+      { title: "Awwwards", description: "En iyi web tasarımlarını ödüllendiren platform.", url: "https://awwwards.com" },
+      { title: "CSS-Tricks", description: "Web geliştirme ve tasarım ipuçları.", url: "https://css-tricks.com" },
+      { title: "Adobe Portfolio", description: "Adobe'nin sunduğu portföy oluşturma aracı.", url: "https://portfolio.adobe.com" },
+      { title: "Behance", description: "Sanatçılar ve tasarımcılar için portföy platformu.", url: "https://behance.net" },
+      { title: "CodePen", description: "Kod paylaşımı ve web tasarımı uygulamaları.", url: "https://codepen.io" },
+      { title: "GitHub", description: "Açık kaynak projelerin paylaşıldığı platform.", url: "https://github.com" },
+      { title: "Stack Overflow", description: "Geliştiriciler için soru-cevap platformu.", url: "https://stackoverflow.com" },
+      { title: "MDN Web Docs", description: "Mozilla'nın web geliştirme dökümantasyonları.", url: "https://developer.mozilla.org" },
+      { title: "Smashing Magazine", description: "Web tasarımı ve geliştirmeyle ilgili kaynaklar.", url: "https://smashingmagazine.com" },
+      { title: "UX Design", description: "Kullanıcı deneyimi tasarımı kaynakları ve makaleler.", url: "https://uxdesign.cc" },
+      { title: "Figma", description: "Web tabanlı tasarım ve prototipleme aracı.", url: "https://figma.com" },
+      { title: "Canva", description: "Kullanıcı dostu grafik tasarım aracı.", url: "https://canva.com" },
+      { title: "Webflow", description: "Kod yazmadan web tasarımı yapmanı sağlayan platform.", url: "https://webflow.com" },
+      { title: "Trello", description: "Proje yönetimi ve görev takibi platformu.", url: "https://trello.com" },
+      { title: "Notion", description: "Dijital not alma ve organizasyon platformu.", url: "https://notion.so" },
+      { title: "Google Fonts", description: "Web için ücretsiz yazı tipleri.", url: "https://fonts.google.com" },
+      { title: "Medium", description: "İçerik paylaşımı ve blog platformu.", url: "https://medium.com" },
+      { title: "Envato Market", description: "Web tasarımı ve yazılım kaynakları platformu.", url: "https://envato.com" },
+      { title: "W3Schools", description: "Web geliştirme öğrenmek için kapsamlı kaynak.", url: "https://w3schools.com" },
+      { title: "Moz", description: "SEO ve dijital pazarlama araçları.", url: "https://moz.com" },
+      { title: "Mailchimp", description: "E-posta pazarlama platformu.", url: "https://mailchimp.com" },
+      { title: "Zapier", description: "İş akışlarını otomatikleştiren araç.", url: "https://zapier.com" },
+      { title: "Shopify", description: "E-ticaret mağazası oluşturma platformu.", url: "https://shopify.com" },
+      { title: "DigitalOcean", description: "Bulut sunucuları sağlayan platform.", url: "https://digitalocean.com" },
+      { title: "Heroku", description: "Bulut platformu ve uygulama barındırma hizmeti.", url: "https://heroku.com" },
+      { title: "WordPress", description: "Dünya çapında popüler içerik yönetim sistemi.", url: "https://wordpress.com" },
+      { title: "Quora", description: "Soru-cevap platformu, kullanıcılar sorular sorar ve cevaplar.", url: "https://quora.com" }
+    ];
+
+    // Arama fonksiyonu
+    function searchSites() {
+      const query = document.getElementById('search').value.toLowerCase();
+      const filteredSites = sites.filter(site => 
+        site.title.toLowerCase().includes(query) || 
+        site.description.toLowerCase().includes(query)
+      );
+      displaySites(filteredSites);
+    }
+
+    // Sonuçları gösterme fonksiyonu
+    function displaySites(filteredSites) {
+      const resultsContainer = document.getElementById('results');
+      resultsContainer.innerHTML = '';
+      filteredSites.forEach(site => {
+        const card = document.createElement('div');
+        card.className = 'site-card';
+        card.innerHTML = `
+          <h2>${site.title}</h2>
+          <p>${site.description}</p>
+          <a href="${site.url}" target="_blank">${site.url}</a>
+        `;
+        resultsContainer.appendChild(card);
+      });
+    }
+
+    // Başlangıçta tüm siteleri göster
+    displaySites(sites);
+
+    // Tema değiştirme fonksiyonu
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
+
+</body>
+</html>
